@@ -1,155 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>To understand how heatpumps work, we built the world's worst minifridge</title>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To understand how heatpumps work, we built the world's worst minifridge</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap"
+        rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    :root {
-      --ink: #1a1a18;
-      --paper: #f5f0e8;
-      --rule: #d6cfc0;
-      --accent: #2a5c8a;
-      --accent-warm: #b84a1e;
-      --mono: 'IBM Plex Mono', monospace;
-      --serif: 'Libre Baskerville', Georgia, serif;
-    }
+        :root {
+            --ink: #1a1a18;
+            --paper: #f5f0e8;
+            --rule: #d6cfc0;
+            --accent: #2a5c8a;
+            --accent-warm: #b84a1e;
+            --mono: 'IBM Plex Mono', monospace;
+            --serif: 'Libre Baskerville', Georgia, serif;
+        }
 
-    body {
-      background: var(--paper);
-      color: var(--ink);
-      font-family: var(--serif);
-      line-height: 1.75;
-      font-size: 17px;
-    }
+        body {
+            background: var(--paper);
+            color: var(--ink);
+            font-family: var(--serif);
+            line-height: 1.75;
+            font-size: 17px;
+        }
 
-    /* ── Header ── */
-    header {
-      border-bottom: 2px solid var(--ink);
-      padding: 3rem 2rem 2rem;
-      max-width: 860px;
-      margin: 0 auto;
-    }
+        /* ── Header ── */
+        header {
+            border-bottom: 2px solid var(--ink);
+            padding: 3rem 2rem 2rem;
+            max-width: 860px;
+            margin: 0 auto;
+        }
 
-    .eyebrow {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.75rem;
-    }
+        .eyebrow {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
 
-    h1 {
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      line-height: 1.15;
-      font-weight: 700;
-      max-width: 680px;
-    }
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            line-height: 1.15;
+            font-weight: 700;
+            max-width: 680px;
+        }
 
-    .subtitle {
-      margin-top: 1rem;
-      font-style: italic;
-      color: #555;
-      font-size: 1.05rem;
-      max-width: 600px;
-    }
+        .subtitle {
+            margin-top: 1rem;
+            font-style: italic;
+            color: #555;
+            font-size: 1.05rem;
+            max-width: 600px;
+        }
 
-    /* ── Main layout ── */
-    main {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 3rem 2rem 5rem;
-    }
+        /* ── Main layout ── */
+        main {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 3rem 2rem 5rem;
+        }
 
-    a:link {
-    color: #40C9A2;
-    }
+        a:link {
+            color: #40C9A2;
+        }
 
-    /* ── Sections ── */
-    section {
-      margin-bottom: 4rem;
-      padding-bottom: 4rem;
-      border-bottom: 1px solid var(--rule);
-    }
-    section:last-child {
-      border-bottom: none;
-    }
+        /* ── Sections ── */
+        section {
+            margin-bottom: 4rem;
+            padding-bottom: 4rem;
+            border-bottom: 1px solid var(--rule);
+        }
 
-    h2 {
-      font-size: 1.4rem;
-      font-weight: 700;
-      margin-bottom: 1.25rem;
-      color: var(--ink);
-    }
+        section:last-child {
+            border-bottom: none;
+        }
 
-    h2::before {
-      content: '§ ';
-      font-family: var(--mono);
-      font-size: 0.85rem;
-      color: var(--accent);
-      vertical-align: middle;
-    }
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            color: var(--ink);
+        }
 
-    p {
-      margin-bottom: 1.1rem;
-      max-width: 680px;
-    }
+        h2::before {
+            content: '§ ';
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            color: var(--accent);
+            vertical-align: middle;
+        }
 
-    /* ── Figure / image blocks ── */
-    figure {
-      margin: 2.5rem 0;
-      background: #ede8de;
-      border: 1px solid var(--rule);
-      border-radius: 2px;
-      overflow: hidden;
-    }
+        p {
+            margin-bottom: 1.1rem;
+            max-width: 680px;
+        }
 
-    figure img {
-      display: block;
-      width: 100%;
-      height: auto;
-      max-height: 480px;
-      object-fit: contain;
-      background: #e8e3d8;
-    }
+        /* ── Figure / image blocks ── */
+        figure {
+            margin: 2.5rem 0;
+            background: #ede8de;
+            border: 1px solid var(--rule);
+            border-radius: 2px;
+            overflow: hidden;
+        }
 
-    /* Placeholder box shown when no real image is present */
-    .img-placeholder {
-      width: 100%;
-      height: 320px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      background: repeating-linear-gradient(
-        45deg,
-        #e4ddd0,
-        #e4ddd0 6px,
-        #ede8de 6px,
-        #ede8de 24px
-      );
-      color: #888;
-      font-family: var(--mono);
-      font-size: 0.78rem;
-      letter-spacing: 0.08em;
-    }
+        figure img {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-height: 480px;
+            object-fit: contain;
+            background: #e8e3d8;
+        }
 
-    .img-placeholder span.icon { font-size: 2rem; }
+        /* Placeholder box shown when no real image is present */
+        .img-placeholder {
+            width: 100%;
+            height: 320px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background: repeating-linear-gradient(45deg,
+                    #e4ddd0,
+                    #e4ddd0 6px,
+                    #ede8de 6px,
+                    #ede8de 24px);
+            color: #888;
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+        }
 
-    figcaption {
-      padding: 0.75rem 1rem;
-      font-family: var(--mono);
-      font-size: 0.78rem;
-      color: #666;
-      border-top: 1px solid var(--rule);
-    }
+        .img-placeholder span.icon {
+            font-size: 2rem;
+        }
 
-    /* ── Google Drive image embed ──────────────────────────────────────────────
+        figcaption {
+            padding: 0.75rem 1rem;
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            color: #666;
+            border-top: 1px solid var(--rule);
+        }
+
+        /* ── Google Drive image embed ──────────────────────────────────────────────
        HOW TO USE:
        1. Upload your image to Google Drive.
        2. Right-click → Share → change to "Anyone with the link".
@@ -160,82 +170,91 @@
     ──────────────────────────────────────────────────────────────────────────── -->
 
     /* ── YouTube embed ── */
-    .video-wrapper {
-      margin: 2.5rem 0;
-      border: 1px solid var(--rule);
-      border-radius: 2px;
-      overflow: hidden;
-      background: #000;
-    }
+        .video-wrapper {
+            margin: 2.5rem 0;
+            border: 1px solid var(--rule);
+            border-radius: 2px;
+            overflow: hidden;
+            background: #000;
+        }
 
-    .video-wrapper iframe {
-      display: block;
-      width: 100%;
-      aspect-ratio: 9 / 16;/* 16 / 9; */
-      border: none;
-    }
+        .video-wrapper iframe {
+            display: block;
+            width: 100%;
+            aspect-ratio: 9 / 16;
+            /* 16 / 9; */
+            border: none;
+        }
 
-    .video-caption {
-      padding: 0.75rem 1rem;
-      font-family: var(--mono);
-      font-size: 0.78rem;
-      color: #666;
-      background: #ede8de;
-      border-top: 1px solid var(--rule);
-    }
+        .video-wrapper_w #wide_frame {
+            display: block;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border: none;
+        }
 
-    /* ── Callout box ── */
-    .callout {
-      border-left: 3px solid var(--accent-warm);
-      padding: 1rem 1.25rem;
-      background: #fdf5ec;
-      margin: 2rem 0;
-      font-size: 0.95rem;
-      max-width: 680px;
-    }
+        .video-caption {
+            padding: 0.75rem 1rem;
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            color: #666;
+            background: #ede8de;
+            border-top: 1px solid var(--rule);
+        }
 
-    .callout strong {
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent-warm);
-      display: block;
-      margin-bottom: 0.4rem;
-    }
+        /* ── Callout box ── */
+        .callout {
+            border-left: 3px solid var(--accent-warm);
+            padding: 1rem 1.25rem;
+            background: #fdf5ec;
+            margin: 2rem 0;
+            font-size: 0.95rem;
+            max-width: 680px;
+        }
 
-    /* ── Footer ── */
-    footer {
-      border-top: 2px solid var(--ink);
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 2rem;
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      color: #888;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-  </style>
+        .callout strong {
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent-warm);
+            display: block;
+            margin-bottom: 0.4rem;
+        }
+
+        /* ── Footer ── */
+        footer {
+            border-top: 2px solid var(--ink);
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 2rem;
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            color: #888;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+    </style>
 </head>
+
 <body>
 
-  <header>
-    <!-- <p class="eyebrow">Explainer · Thermodynamics</p> -->
-    <h1>To understand how heatpumps work, we built the world's worst minifridge</h1>
-    <p class="subtitle">
-      In which the gang gets soaked in butane and lit on fire (for science)
-    </p>
-  </header>
+    <header>
+        <!-- <p class="eyebrow">Explainer · Thermodynamics</p> -->
+        <h1>To understand how heatpumps work, we built the world's worst minifridge</h1>
+        <p class="subtitle">
+            In which the gang gets soaked in butane and lit on fire (for science)
+        </p>
+    </header>
 
-  <main>
+    <main>
 
-    <!-- ── Section 1: Introduction ── -->
-    <section>
+        <!-- ── Section 1: Introduction ── -->
+        <section>
 
-        <!--
+            <!--
         ═══════════════════════════════════════════════════════════════
         YOUTUBE EMBED
         ───────────────────────────────────────────────────────────────
@@ -250,104 +269,100 @@
           src="https://www.youtube.com/embed/dQw4w9WgXcQ"
         ═══════════════════════════════════════════════════════════════
       -->
-      <div class="video-wrapper" style="max-width: 340px;">
-    <iframe src="https://www.youtube-nocookie.com/embed/TsQBnRli8QQ?autoplay=1&mute=1"
-      title="Should have done this outside"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      referrerpolicy="strict-origin-when-cross-origin"
-      allowfullscreen
-    ></iframe>
-  </div>
+            <div class="video-wrapper" style="max-width: 340px;">
+                <iframe src="https://www.youtube-nocookie.com/embed/TsQBnRli8QQ?autoplay=1&mute=1"
+                    title="Should have done this outside"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
 
-      <h2>Refrigeration is everywhere</h2>
-      <p>
-        The Florida man that invented air conditioning died in poverty, driven out of business by the incumbents whose industry he was trying to distrupt: the 19th century Ice Barrons of New England. 
-        Since then, refrigeration has revolutionized our world. Refrigeration has made mass vaccination possible; it allowed us to largely eradicate measles, rubella, polio, and a host of other diseases that have killed millions of people.
-        Refrigeration, in the form of air conditioning, has made large-scale human habitation of Florida and Arizona possible and shifted the center of political and social power in America.
-        Florida now commemorates their man, John Gorrie, with a statue in the U.S. Capitol Building.
-      </p>
-      <p>
-        At the same time, refrigeration kneecapped southern social life, by driving people from their porches and into the privacy of their (air conditioned) suburban homes.
-        And refrigeration is driving the climate crisis, even as it's helping people weather increasingly frequent, brutal heatwaves. Air conditioning is <a href="https://www.eia.gov/tools/faqs/faq.php?id=1174&t=3">19%</a>
-        of U.S. residential electricity use. A pound of the most common refrigerant gas used today in home air conditioning (R-410A) has the same global warming impact as 2,088 pounds of carbon dioxide, if it leaks from your unit.
-      </p>
+            <h2>Refrigeration is everywhere</h2>
+            <p>
+                The Florida man that invented air conditioning died in poverty, driven out of business by the incumbents
+                whose industry he was trying to distrupt: the 19th century Ice Barrons of New England.
+                Since then, refrigeration has revolutionized our world. Refrigeration has made mass vaccination
+                possible; it allowed us to largely eradicate measles, rubella, polio, and a host of other diseases that
+                have killed millions of people.
+                Refrigeration, in the form of air conditioning, has made large-scale human habitation of Florida and
+                Arizona possible and shifted the center of political and social power in America.
+                Florida now commemorates their man, John Gorrie, with a statue in the U.S. Capitol Building.
+            </p>
+            <p>
+                At the same time, refrigeration kneecapped southern social life, by driving people from their porches
+                and into the privacy of their (air conditioned) suburban homes.
+                And refrigeration is driving the climate crisis, even as it's helping people weather increasingly
+                frequent, brutal heatwaves. Air conditioning is <a
+                    href="https://www.eia.gov/tools/faqs/faq.php?id=1174&t=3">19%</a>
+                of U.S. residential electricity use. A pound of the most common refrigerant gas used today in home air
+                conditioning (R-410A) has the same global warming impact as 2,088 pounds of carbon dioxide, if it leaks
+                from your unit.
+            </p>
 
-      <p>
-        Refrigeration is a structural support that makes our world possible, hiding in plain sight. How do they work?
-      </p>
+            <p>
+                Refrigeration is a structural support that makes our world possible, hiding in plain sight. How does it
+                work?
+            </p>
 
-      <div class="callout">
-        <strong>If you tinker with refrigerants, be smart</strong>
-        I did some dumb and slightly dangerous stuff during this project. If you experiment with flammable, high pressure gases, be careful! Use PPE and ensure good ventilation. 
-        Ideally, work with someone who knows what they're doing. Be smarter (and less lead-addled) than me. As my favorite foraging influencer says: <a href="https://www.instagram.com/blackforager/?hl=en">Have fun, don't die.</a>
-      </div>
-    </section>
+            <br>
+            <br>
 
-    <!-- ── Section 2: Diagram (Google Drive image) ── -->
-    <section>
-      <h2>The surprisingly simple physics of refrigeration</h2>
-      <p>
-        The first thing to understand is that basically all refrigeration devices 
-        (refrigerators, freezers, heatpumps, AC units, icemakers, dehumidifiers, etc) work by the same general principle.<sup><a href="#fn1" id="ref1">[1]</a></sup>
-      </p>
+            <div class="callout">
+                <strong>If you tinker with refrigerants, be smart</strong>
+                I did some dumb and slightly dangerous stuff during this project.<sup><a href="#fn1"
+                        id="ref1">[1]</a></sup>
+                If you experiment with flammable, high
+                pressure gases, be careful! Use PPE and ensure good ventilation.
+                Ideally, work with someone who knows what they're doing. Be smarter (and less lead-addled) than me. As
+                my favorite foraging influencer says: <a href="https://www.instagram.com/blackforager/?hl=en">Have fun,
+                    don't die.</a>
+            </div>
+        </section>
 
-      <p>
-        You create a closed loop of metal tubing (usually copper, since copper conducts heat well). This loop will have the refrigerant gas in it. 
-        Many refrigeration devices use gases called hydrofluorocarbons, which are not so good for the climate if they leak from the equipment. 
-        We used to use gases that destroyed the ozone layer <i>and</i> caused climate change, so this is a kind of improvement. 
-        (The guy who invented those gases also invented leaded gasoline--who says one person can't make a difference).
-        The U.S. is moving towards using gases that also don't cause climate change. For this project, I used isobutane (which the HVAC industry calls "R-600a"). 
-        You may know isobutane as the gas you use on your portable camping stove. Isobutane is only 3x as bad for global warming when emitted (relative to CO2), but it's
-        also flammable, so you have to handle it carefully. 
-        </p>
+        <!-- ── Section ── -->
+        <section>
+            <h2>The surprisingly simple physics of refrigeration</h2>
+            <p>
+                The first thing to understand is that basically all refrigeration devices
+                (refrigerators, freezers, heatpumps, AC units, icemakers, dehumidifiers, etc) work by the same general
+                principle.<sup><a href="#fn2" id="ref2">[2]</a></sup>
+            </p>
 
-        <p>
-            The most important quality in a refrigerant is that it's close to being both a liquid and a gas around room temperature. 
-            More on why below, but the gist here is that refrigerators compress and expand this gas, which heats and cools the gas, which allows you to either
-            absorb or release heat into the ambient air around the copper coils.
-        </p>
+            <p>
+                You create a closed loop of metal tubing (usually copper, since copper conducts heat well). This loop
+                will have the refrigerant gas in it.
+                Many refrigeration devices use gases called hydrofluorocarbons, which are bad for the climate if they
+                leak from the equipment.
+                We used to use gases that destroyed the ozone layer <i>and</i> caused climate change, so this is a kind
+                of improvement.
+                (The guy who invented those gases also invented leaded gasoline; who says one person can't make a
+                difference).
+                The U.S. is moving towards using gases with lower climate impacts. For this project, I used isobutane
+                (which the HVAC industry calls "R-600a").
+                You may know isobutane as the gas you use on your portable camping stove. Isobutane heats the planet
+                only 3x more than CO<sub>2</sub>, but it's
+                also flammable, so you have to handle it carefully.
+            </p>
 
-        <p>
-        Anyway, one part of this copper loop has the compressor stuck into it. The compressor is a pump that pushes the refrigerant forward through the copper tubing. 
-        Compressors take a lot of energy because it takes a lot of force to push the refrigerant gas around the loop.
-        We're going to start our walk through the compressor. 
-        
-        <ol>
-        <li>
-            The refrigerant gas gets shot down the tubing by the compressor, into a coiled length of tubing called the condenser. 
-            Right out of the compressor, the refrigerant gas is hot and high pressure (the compressor is pushing the gas forward).
-        </li>
-        <li>
-            Then the gas reaches a loop of copper coil called the condensor. In the condensor, the gas is hotter than the surrounding air outside the tube,
-            so the gas releases its heat into the surrounding air. (The same way that a cup of hot tea is hotter than your hands, so it releases warmth into your hands).
-        </li>
-        <li>
-            Then we reach a point in the loop where the inner diameter of the copper tube suddenly gets much smaller. This length of smaller tube is called a 
-            capillary tube, or the "restriction" in the refrigeration circuit.
-            This is where the thermodynamic magic happens. Say a large crowd of people is trying to leave a theater through one small door.
-            (The crowd of people are the molecules of the refrigerant gas here). Not everyone can fit through the door at once, so the crowd will bunch up
-            before the door (the condenser's side of the copper tubing). In other words, the door is creating a "high pressure zone" (a crammed crowd of people) on the inside of the theater.
-            This, along with the compressor constantly pumping more refrigerant molecules into the circuit, is what makes the gas hot and high pressure in the condensor tubing.
-        </li>
+            <p>
+                The most important quality in a refrigerant is that it's close to being both a liquid and a gas around
+                room temperature.
+                More on why below, but the gist here is that refrigerators compress and expand this gas, which heats and
+                cools the gas, which allows you to either
+                absorb or release heat into the ambient air around the copper coils. If the gas changes from a liquid to
+                a gas (or vice versa), that helps you
+                absorb/release heat more effectively, because those phase changes involve a lot of energy transfer.
+            </p>
 
-        <li>
-            The capillary tube sort of divides the refrigeration circuit in two (along with the compressor). On the other side of the capillary tube,
-            the inner diameter of the copper tube widens again.
-            To return to our theater analogy: on the other side of the door (in the street) there's a lot more space than the space in the door frame.
-            But because only a few people can fit through the doorframe at a time, the people who make it through the door, and continue on their way down the street--each of them
-            suddenly has a lot more space. In other words, the pressure of the refrigerant gas in this section of tube--the evaporator--suddenly drops. This means the gas is less dense
-            and has less energy than the ambient air around the copper tube. This feels "cold" to us; we're hotter than the evaporator tube. As a result, the gas in the 
-            evaporator tube absorbs heat from the surrounding air, making that air cold, before returning to the compressor, to start the whole process over.
-        </li>
-        </ol>
-      </p>
 
-      <p>
-        Whether you have a heater (heat pump) or air conditioning / freezer / refrigerator just depends on which side of this loop is inside, and which is dumping
-        heat (or absorbing it) outside.
-      </p>
 
-      <!--
+            <p>
+                Anyway, one part of this copper loop has the compressor stuck into it. The compressor is a pump that
+                pushes the refrigerant forward through the copper tubing.
+                Compressors take a lot of energy because it takes a lot of force to push the refrigerant gas around the
+                loop.
+                We're going to start our walk through this system at the compressor.
+
+                <!--
         ═══════════════════════════════════════════════════════════════
         GOOGLE DRIVE IMAGE
         ───────────────────────────────────────────────────────────────
@@ -362,87 +377,216 @@
           src="https://drive.google.com/uc?export=view&id=1aBcDeFgHiJkLmNoPqRsTuVwXyZ"
         ═══════════════════════════════════════════════════════════════
       -->
-      <figure>
-  <img src="imgs/fridge diagram.jpg"
-    alt="Refrigeration cycle diagram showing evaporator, compressor, condenser, and capillary tube"
-    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-  />
-  <div class="img-placeholder" style="display:none;">
-    <span class="icon">🖼</span>
-    <span>Replace FILE_ID_HERE with your Google Drive file ID</span>
-  </div>
-  <figcaption>Fig. 1 — Refrigeration cycle schematic, drawn by an adult with kid's handwriting.</figcaption>
-</figure>
-    </section>
+            <figure>
+                <img src="imgs/fridge diagram.jpg"
+                    alt="Refrigeration cycle diagram showing evaporator, compressor, condenser, and capillary tube"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                <div class="img-placeholder" style="display:none;">
+                    <span class="icon">🖼</span>
+                    <span>Replace FILE_ID_HERE with your Google Drive file ID</span>
+                </div>
+                <figcaption>Fig. 1 — Refrigeration cycle schematic, drawn by an adult with child-like handwriting.
+                </figcaption>
+            </figure>
 
-    <!-- ── Section 3: The Four Components ── -->
-    <section>
-      <h2>The Four Key Components</h2>
-      <p>
-        Placeholder text: walk through each component in turn.
-      </p>
+            <ol>
+                <li>
+                    The refrigerant gas gets shot down the tubing by the compressor, into a coiled length of tubing
+                    called the condenser.
+                    Right out of the compressor, the refrigerant gas is hot and high pressure (the compressor is pushing
+                    the gas forward).
+                </li>
+                <li>
+                    Then the gas reaches a loop of copper coil called the condensor. In the condensor, the gas is hotter
+                    than the surrounding air outside the tube,
+                    so the gas releases its heat into the surrounding air. (The same way that a cup of hot tea is hotter
+                    than your hands, so it releases warmth into your hands).
+                </li>
+                <li>
+                    Then we reach a point in the loop where the inner diameter of the copper tube suddenly gets much
+                    smaller. This length of smaller tube is called a
+                    capillary tube, or the "restriction" in the refrigeration circuit.
+                    This is where the thermodynamic magic happens. Say a large crowd of people is trying to leave a
+                    theater through one small door.
+                    (The crowd of people are the molecules of the refrigerant gas here). Not everyone can fit through
+                    the door at once, so the crowd will bunch up
+                    before the door (the condenser's side of the copper tubing). In other words, the door is creating a
+                    "high pressure zone" (a crammed crowd of people) on the inside of the theater.
+                    This, along with the compressor constantly pumping more refrigerant molecules into the circuit, is
+                    what makes the gas hot and high pressure in the condensor tubing.
+                </li>
 
-      <p>
-        <strong>Evaporator:</strong> placeholder — inside these coils the refrigerant
-        is colder than the surrounding air, so it absorbs heat and the air is cooled.
-      </p>
-      <p>
-        <strong>Compressor:</strong> placeholder — driven by the electric motor, it
-        squeezes the low-pressure gas into a hot, high-pressure gas.
-      </p>
-      <p>
-        <strong>Condenser:</strong> placeholder — the hot gas enters these coils,
-        which are warmer than the outside air, so heat flows outward and the gas
-        condenses back to liquid.
-      </p>
-      <p>
-        <strong>Capillary tube / expansion valve:</strong> placeholder — this
-        restriction drops the pressure sharply, causing the liquid to cool before
-        it re-enters the evaporator.
-      </p>
+                <li>
+                    The capillary tube sort of divides the refrigeration circuit in two (along with the compressor). On
+                    the other side of the capillary tube,
+                    the inner diameter of the copper tube widens again.
+                    To return to our theater analogy: on the other side of the door (in the street) there's a lot more
+                    space than in that narrow doorway.
+                    But because only a few people can fit through the door frame at a time, the people who make it
+                    through the door, and continue on their way down the street--each of them
+                    suddenly has a lot more space. In other words, the pressure of the refrigerant gas in this section
+                    of tube--the evaporator coil--suddenly drops. This means the gas is less dense
+                    and has less energy than the ambient air around the copper tube. This feels "cold" to the touch. As
+                    a result, the gas in the
+                    evaporator tube absorbs heat from the surrounding air, making that air colder, before returning to
+                    the
+                    compressor, to start the whole process over.
+                </li>
+            </ol>
+            </p>
 
-     
-    </section>
+            <p>
+                Whether you have a heater (heat pump) or air conditioner just depends on whether
+                the side of the refrigeration circuit that dumps heat (condenser) or absorbs heat (evaporator) is on the
+                inside or outside of your house.
+                If you turn an air conditioner around, it's a heater.
+            </p>
 
-    <!-- ── Section 4: Video explainer ── -->
-    <section>
-      <h2>Video Walkthrough</h2>
-      <p>
-        Placeholder text: briefly introduce the video — what it covers, who made it,
-        and why it's worth watching alongside the diagrams above.
-      </p>
+        </section>
 
-      
-    </section>
+        <section>
 
-    <!-- ── Section 5: Applications ── -->
-    <section>
-      <h2>Applications</h2>
-      <p>
-        Placeholder text: explain how the same cycle is adapted for different
-        appliances — refrigerators, freezers, air conditioners, heat pumps,
-        dehumidifiers, and ice makers. Note any key differences (e.g. a heat pump
-        can reverse the cycle to provide heating).
-      </p>
-    </section>
+            <h2>Sidebar: the ingenious reversing valve that makes heatpumps possible</h2>
+            <p>
+                Heat pumps don't actually physically turn their coils around, since they're usually run through the wall
+                of your house.
+                Instead, they use a super clever 4-way valve to just send the
+                refrigerant in the opposite direction, depending on whether you want to heat or cool the inside of your
+                house.
+                The mechanism is sort of like an electronic relay--it uses a magnetic little switch to divert a small
+                amount of refrigerant to a bigger valve in the copper coils.
+                Then that bit of refrigerant itself pushes the bigger valve to a different position, which redirects the
+                main flow of refrigerant.
+                Here's a neat video on this (all of Ty Branaman's HVAC videos are great):
+            </p>
 
-    <section id="footnotes">
-  <p class="footnote">
-    <sup><a id="fn1" href="#ref1">↑</a></sup> 
-    There is some absolutely wild research happening at the frontier of materials science, which uses "solid refrigerants" that absorb and release heat when you
-     <a href="https://www.youtube.com/watch?v=GHl6buYjZGE">massage them with magnets</a>. This could avoid many of the 
-    greenhouse gas emissions associated with the refrigerant gases used today. But that technology is yet to be deployed commercially and at scale.
-    (You can't go to the hardware store and buy a window unit that works this way).
-  </p>
-</section>
-  </main>
+            <div class="video-wrapper_w" style="max-width: 1000px;">
+                <iframe src="https://www.youtube-nocookie.com/embed/HD0fBntN10A" id="wide_frame"
+                    title="a working (if leaky) minifridge system"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
 
-  <footer>
-    <!-- <span>How Refrigeration Works</span> -->
-    <span>Last updated: March 2026</span>
-  </footer>
 
-  
+        </section>
+
+        <!-- ── Section ── -->
+        <section>
+            <h2>Maybe try this at home (but don't do it this way)</h2>
+            <p>
+                That's how refrigeration works conceptually. But I'm a learning-by-touching-the-stove kind of guy, so I
+                ordered a minifridge compressor on ebay, along with copper tubing, isobutane, and some pressure gauges.
+                The gauges help us tell if we have enough pressure on each side of the restriction (the capillary tube).
+                The result is shown below. We managed to get the refrigeration coil down to 30 degrees or so.
+                I am not an HVAC technician or refrigeration engineer, so I was happy with this.
+            </p>
+
+            <div class="video-wrapper" style="max-width: 340px;">
+                <iframe src="https://www.youtube-nocookie.com/embed/5yCJkcYoIUI"
+                    title="a working (if leaky) minifridge system"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+
+        </section>
+
+        <!-- ── Section ── -->
+        <section>
+            <h2>So why are heatpumps zeitgeisty?</h2>
+            <p>
+                Maybe you burn gas to heat your house. Or maybe you have electric baseboard heating, which is basically
+                just putting little toasters around your house.
+            </p>
+
+            <p>
+                There is a hard limit on these heating technologies' thermodynamic efficiency. The most heat you can get
+                out of baseboard heating is however much energy
+                (electricity) you put in. In other words, the maximum ratio of heat output to energy input into the
+                system (the electricity or gas) is 1:1.
+                In practice, it's lower than 1:1, because some of the heat leaks to the outside of your house. HVAC
+                people call this ratio the "coefficient of performance" or COP.
+            </p>
+
+            <p>
+                What's crazy about heat pumps (and air conditioners--again, heat pumps are just AC units turned around)
+                is that heat pumps have COPs greater than one.
+                In DC winter, you could expect a COP between 2 and 3. This means that the heat pump is providing 2-3x
+                more heat to the inside of your house than it's
+                consuming in electricity. This sounds like magic, but it's just transferring heat around by pressurizing
+                a refrigerant gas.
+            </p>
+
+            <p>That, along with the fact that heat pumps can be powered with cheap, renewable electricity, is why heat
+                pumps have been
+                <a href="https://www.rewiringamerica.org/stories/heat-pumps-becoming-hottest-home-energy-system">outselling
+                    gas furnaces</a>.
+            </p>
+
+
+
+        </section>
+
+        <!-- ── Section ── -->
+        <section>
+            <h2>A long list of lessons (mistakes)</h2>
+            <p>
+                Part of the fun of these side projects is learning by breaking things. Some lessons:
+            </p>
+
+            <ul>
+                <li>Compressors use a lot of energy. For our first attempt at this, we bought a pump for a fish tank (see below).
+                    Aside from the fact that fish tank pumps aren't hermetically sealed (so the gas just leaked out), these pumps can only
+                    put out 220 KPA of pressure, which is about 32 PSI. For reference, on our working version of the minifridge, with the real compressor,
+                    we measured pressures in the condensor coil more than twice that.
+                </li>
+                <li>Item 2</li>
+                <li>Item 3</li>
+            </ul>
+
+            <figure>
+                <img src="imgs/fish pump.jpg"
+                    alt="This pump wasn't strong enough"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                <div class="img-placeholder" style="display:none;">
+                    <span class="icon">🖼</span>
+                    <span>Replace FILE_ID_HERE with your Google Drive file ID</span>
+                </div>
+                <figcaption>Fig. 1 — Refrigeration cycle schematic, drawn by an adult with child-like handwriting.
+                </figcaption>
+            </figure>
+
+
+            <br>
+            <br>
+
+            <p><i>Thank you to Nika Sitomer for helping me build this!</i></p>
+        </section>
+
+        <section id="footnotes">
+            <p class="footnote">
+                <sup><a id="fn1" href="#ref1">↑</a></sup>
+                This project is not related my day job. (This was a hobby project)
+            </p>
+            <p class="footnote">
+                <sup><a id="fn2" href="#ref2">↑</a></sup>
+                There is some absolutely wild research happening at the frontier of materials science, which uses "solid
+                refrigerants" that absorb and release heat when you
+                <a href="https://www.youtube.com/watch?v=GHl6buYjZGE">massage them with magnets</a>. This could avoid
+                many of the
+                greenhouse gas emissions associated with the refrigerant gases used today. But that technology is yet to
+                be deployed commercially and at scale.
+                (You can't go to the hardware store and buy a window unit that works this way).
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <!-- <span>How Refrigeration Works</span> -->
+        <span>Last updated: March 2026</span>
+    </footer>
+
+
 
 </body>
+
 </html>
