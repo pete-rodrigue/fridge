@@ -385,7 +385,7 @@
                     <span class="icon">🖼</span>
                     <span>Replace FILE_ID_HERE with your Google Drive file ID</span>
                 </div>
-                <figcaption>Fig. 1 — Refrigeration cycle schematic, drawn by an adult with child-like handwriting.
+                <figcaption>Refrigeration cycle schematic, drawn by an adult with child-like handwriting.
                 </figcaption>
             </figure>
 
@@ -534,13 +534,21 @@
             </p>
 
             <ul>
-                <li>Compressors use a lot of energy. For our first attempt at this, we bought a pump for a fish tank (see below).
+                <li>
+                    Compressors use a lot of energy. For our first attempt at this, we bought a pump for a fish tank (see below).
                     Aside from the fact that fish tank pumps aren't hermetically sealed (so the gas just leaked out), these pumps can only
                     put out 220 KPA of pressure, which is about 32 PSI. For reference, on our working version of the minifridge, with the real compressor,
                     we measured pressures in the condensor coil more than twice that.
                 </li>
-                <li>Item 2</li>
-                <li>Item 3</li>
+                <li>
+                    It takes a fair amount of restriction to create a pressure differential on each side of the refrigeration circuit. 
+                    In our second attempt at this (with a real compressor) we used a capillary tube that was too short, with too large an inner diameter (see below).
+                    This meant that the capillary tube didn't restrict the flow of refrigerant very much. Which meant the pressure throughout the circuit was essentially the same.
+                    Which meant no heating or cooling.
+                </li>
+                <li>
+                    
+                </li>
             </ul>
 
             <figure>
@@ -551,15 +559,25 @@
                     <span class="icon">🖼</span>
                     <span>Replace FILE_ID_HERE with your Google Drive file ID</span>
                 </div>
-                <figcaption>Fig. 1 — Refrigeration cycle schematic, drawn by an adult with child-like handwriting.
-                </figcaption>
+                <figcaption>This fish tank pump did not have the juice. It takes a lot of energy to push compressed gas around.</figcaption>
+            </figure>
+
+            <figure>
+                <img src="imgs/cap_tube.jpg"
+                    alt="This capillary tube did not create enough of a restriction."
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                <div class="img-placeholder" style="display:none;">
+                    <span class="icon">🖼</span>
+                    <span>Replace FILE_ID_HERE with your Google Drive file ID</span>
+                </div>
+                <figcaption>This capillary tube was too short, with too wide an inner diameter. It failed to slow the refrigerant down and create a pressure differential.</figcaption>
             </figure>
 
 
             <br>
             <br>
 
-            <p><i>Thank you to Nika Sitomer for helping me build this!</i></p>
+            <p><i>Thank you to Nika Sitomer and Leo Cosgrove for helping build this!</i></p>
         </section>
 
         <section id="footnotes">
