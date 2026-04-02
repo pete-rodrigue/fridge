@@ -80,18 +80,20 @@ df <- bind_rows(df14, df24)
 ahri <- 
   read.csv("ahri_data.csv") %>%
   tidyr::pivot_longer(cols = c("Gas.Furnaces", "Heat.Pumps")) %>%
-  mutate(name = ifelse(name=="Heat.Pumps", "Heat pumps", "Gas Furnaces"))
+  mutate(name = ifelse(name=="Heat.Pumps", "Heat pumps", "Gas furnaces"))
   
 
 # plot bar charts!
 p3 <-
   ggplot(ahri, aes(x=Year)) +
-  geom_line(aes(y=value, color=name)) +
+  geom_line(aes(y=value, color=name), linewidth = 1.3) +
   theme_minimal() +
   theme(
     legend.position = c(.75, .2),
     legend.title = element_blank()
   ) +
+  scale_color_manual(values = c("Gas furnaces" = "#9db2a3", 
+                                "Heat pumps" = "#0f9535")) +
   xlab('') +
   ylab('Millions of units shipped / year') +
   ggtitle("Nationally, more heat pump units being shipped...")
@@ -101,7 +103,7 @@ p1 <-
   ggplot(df) +
   geom_bar(
     aes(y=pct_elec, x=YEAR), 
-    stat="identity", position="dodge", fill="#7CAE00") +
+    stat="identity", position="dodge", fill="#0f9535") +
   facet_wrap(~STATE) +
   theme_minimal() +
   ylab("% heating w/ electricity") + 
@@ -114,7 +116,7 @@ p2 <-
   ggplot(df) +
   geom_bar(
     aes(y=pct_gas, x=YEAR), 
-    stat="identity", position="dodge", fill="#F8766D") +
+    stat="identity", position="dodge", fill="#9db2a3") +
   facet_wrap(~STATE) +
   theme_minimal() +
   ylab("% heating w/ utility gas") + 
