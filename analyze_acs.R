@@ -96,7 +96,7 @@ p3 <-
                                 "Heat pumps" = "#0f9535")) +
   xlab('') +
   ylab('Millions of units shipped / year') +
-  ggtitle("Nationally, more heat pump units being shipped...")
+  ggtitle("Nationally, more heat pump units are being shipped...")
 
 
 p1 <-
